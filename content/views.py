@@ -6,10 +6,13 @@ from rest_framework.authentication import TokenAuthentication
 
 
 from .models import Content, Rate
-from .serializers import ContentSerializer, RateSerializer
+from .serializers import ContentSerializer
 
 
 class ContentList(APIView):
+    """An end point to show content's title, context, amount of users that rated and
+    user's rate if existed"""
+
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated, ]
 
@@ -53,6 +56,7 @@ class ContentList(APIView):
 
 
 class Rating(APIView):
+    """An end point to rate the desired content while updating average rating"""
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated, ]
 

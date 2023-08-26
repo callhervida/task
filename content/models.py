@@ -4,6 +4,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Content(models.Model):
+    """A Model for contents information including content's title, context
+    amount of users that rated and average rate"""
+
     title = models.CharField(blank=True, null=True, max_length=100)
 
     context = models.TextField(blank=True, null=True)
@@ -14,6 +17,9 @@ class Content(models.Model):
 
 
 class Rate(models.Model):
+    """A Model including information about rating contents
+    such as user and rate number between 0 and 5"""
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
@@ -22,6 +28,3 @@ class Rate(models.Model):
             MaxValueValidator(5),
             MinValueValidator(0)
         ])
-    # @property
-    # def average_rating(self):
-    #     return self.rate_mean.aggregate(Avg('rating'))['rating_avg']
