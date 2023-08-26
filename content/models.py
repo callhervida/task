@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Content(models.Model):
-    title = models.CharField(blank=True, Null=True, max_length=100)
+    title = models.CharField(blank=True, null=True, max_length=100)
 
     context = models.TextField(blank=True, null=True)
 
@@ -18,9 +18,9 @@ class Rate(models.Model):
 
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
 
-    rate = models.IntegerField(default=0, validators=[
-            MaxValueValidator(100),
-            MinValueValidator(1)
+    rate = models.PositiveIntegerField(default=0, validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0)
         ])
     # @property
     # def average_rating(self):
