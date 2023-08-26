@@ -28,3 +28,8 @@ class Rate(models.Model):
             MaxValueValidator(5),
             MinValueValidator(0)
         ])
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['user', 'content']),
+        ]
