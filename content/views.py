@@ -64,6 +64,14 @@ class Rating(APIView):
 
         rate = request.data.get('rate')
 
+        if not rate in range(0, 6):
+            response = {
+                'data': '',
+                'message': 'Rating must be between 0 and 5'
+            }
+
+            return Response(response, status=400)
+
         content_obj = Content.objects.filter(id=content_id)
 
         if not content_obj.first():
